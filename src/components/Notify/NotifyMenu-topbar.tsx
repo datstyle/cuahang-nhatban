@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import useClickOutside from "../useClickOutside-topbar";
-import TopBarButton from "../TopBarButton";
+import useClickOutside from "../menu/useClickOutside";
+import TopBarButton from "../menu/TopBarButton";
 import { NOTIFY_TABS, notifications } from "../../types/notifications";
 import type { NotifyTab } from "../../types/notifications";
 

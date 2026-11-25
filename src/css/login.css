@@ -1,0 +1,268 @@
+/* Bố cục trang */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.auth-page * {
+  box-sizing: border-box;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 45px 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.auth-form-side {
+  width: 100%;
+}
+
+/* Đăng nhập và đăng ký */
+.auth-tabs {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.auth-tabs a {
+  color: #222;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-tabs a.on {
+  color: #ed202b;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.auth-tabs a:hover {
+  color: #ed202b;
+}
+
+/* Form nhập liệu */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-input {
+  width: 100%;
+  height: 54px;
+  padding: 0 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 30px;
+  background: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.auth-input::placeholder {
+  color: #aaa;
+}
+
+.auth-input:focus {
+  border-color: #e60012;
+  box-shadow: 0 0 0 3px rgba(230, 0, 18, 0.07);
+}
+
+/* Hiển thị mật khẩu */
+.pw-field {
+  position: relative;
+  width: 100%;
+}
+
+.pw-field .auth-input {
+  padding-right: 45px;
+}
+
+.pw-toggle {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.pw-toggle:hover {
+  color: #333;
+}
+
+/* Ghi nhớ và quên mật khẩu */
+.auth-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.auth-remember {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #555;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.auth-remember input {
+  accent-color: #d00000;
+  cursor: pointer;
+}
+
+.auth-forgot {
+  font-size: 14px;
+  color: #222;
+  text-decoration: none;
+}
+
+.auth-forgot:hover {
+  color: #d00000;
+  text-decoration: underline;
+}
+
+/* Nút đăng nhập */
+.auth-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 30px;
+  background: #ce0000;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-submit i {
+  font-size: 20px;
+}
+
+.auth-submit:not(:disabled):hover {
+  background: #ae0000;
+}
+
+.auth-submit:disabled {
+  background: #f4f4f4;
+  color: #b3b3b3;
+  border: 1px solid #d9d9d9;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Đường phân cách */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 14px 0;
+  color: #555;
+  font-size: 15px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px dashed #bcbcbc;
+}
+
+.auth-divider span {
+  white-space: nowrap;
+}
+
+/* Đăng nhập Google */
+.auth-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+}
+
+.google-button {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #aaa;
+  border-radius: 30px;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.google-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Thông báo lỗi */
+.auth-error {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #fff0f0;
+  color: #d00000;
+  font-size: 13px;
+}
+
+.auth-loading {
+  margin: 0;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Chuyển sang đăng ký */
+.auth-switch {
+  margin: 28px 0 0;
+  text-align: center;
+  color: #333;
+  font-size: 15px;
+}
+
+.auth-switch a {
+  margin-left: 7px;
+  color: #222;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  color: #d00000;
+}
+
+/* Quay về trang chủ */
+.auth-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: #888;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.auth-back:hover {
+  color: #d00000;
+}

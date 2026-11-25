@@ -451,3 +451,103 @@
 .chat-input button:disabled {
   color: #ccc;
 }
+.account-wrap {
+  position: absolute;
+  right: 24px;
+}
+
+.account-wrap .top-item span {
+  max-width: 96px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-wrap .top-item.account-trigger {
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.account-wrap .account-trigger > i {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8edf5;
+  color: #52627a;
+  font-size: 1.4rem;
+}
+
+.account-wrap .account-trigger > .account-avatar {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-wrap .account-trigger > .account-chevron {
+  width: auto;
+  height: auto;
+  background: none;
+  color: #777;
+  font-size: 0.7rem;
+}
+
+.top-item.admin {
+  color: #dc3545;
+}
+
+.account-popup {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 260px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  padding: 8px 0;
+  z-index: 200;
+}
+
+.account-hint {
+  margin: 4px 18px 8px;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  color: #222;
+  font-weight: 600;
+  text-align: left;
+}
+
+.account-item i {
+  width: 22px;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.account-item:hover {
+  background: #f5f5f5;
+}
+
+.account-item.red {
+  color: #dc3545;
+}
+
+.account-divider {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 6px 0;
+}

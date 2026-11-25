@@ -6,6 +6,8 @@ export interface Product {
     category: string;
     description: string;
     stock: number;
+    status?: "pending" | "visible" | "hidden";
+    discountedPrice?: number;
 }
 
 export interface Category {

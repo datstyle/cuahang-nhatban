@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
-import useClickOutside from "../../components/useClickOutside-topbar";
-import TopBarButton from "../../components/TopBarButton";
+import useClickOutside from "../menu/useClickOutside";
+import TopBarButton from "../menu/TopBarButton";
 import { initialConversations } from "../../types/chats";
 import type { Conversation } from "../../types/chats";
 import ChatList from "./ChatList";
