@@ -8,12 +8,18 @@ export interface Product {
     stock: number;
     status?: "pending" | "visible" | "hidden";
     discountedPrice?: number;
+    nameEn?: string;
+    nameJa?: string;
 }
 
 export interface Category {
     id: string;
     name: string;
+    nameEn?: string;
+    nameJa?: string;
 }
+
+export type Lang = "vi" | "en" | "ja";
 
 export interface CartItem {
     product: Product;
