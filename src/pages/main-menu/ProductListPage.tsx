@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useOutletContext, useSearchParams } from "react-router-dom";
+import type { StorefrontContext } from "../../layouts/MainLayouts";
 import type { Product } from "../../types";
 import { ProductService } from "../../services/productService";
-
-const formatPrice = (price: number) =>
-  `${new Intl.NumberFormat("vi-VN").format(price)}₫`;
+import { getCategoryLabel, getProductDisplay } from "../../utils/localize";
 
 export default function ProductListPage() {
+  const { language, categories } = useOutletContext<StorefrontContext>();
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("search")?.trim().toLowerCase() ?? "";
   const selectedCategoryId = searchParams.get("category")?.trim().toLowerCase() ?? "";
@@ -16,7 +16,9 @@ export default function ProductListPage() {
   const [error, setError] = useState("");
   const [reloadKey, setReloadKey] = useState(0);
   const filteredProducts = products.filter((product) =>
-    (!searchTerm || product.name.toLowerCase().includes(searchTerm)) &&
+    (!searchTerm || [product.name, product.nameEn, product.nameJa].some(
+      (name) => name?.toLowerCase().includes(searchTerm),
+    )) &&
     (!selectedCategoryId ||
       product.category.trim().toLowerCase() === selectedCategoryId ||
       product.category.trim().toLowerCase() === selectedCategoryName),
@@ -80,41 +82,46 @@ export default function ProductListPage() {
 
       {!isLoading && !error && filteredProducts.length > 0 && (
         <div className="row g-4">
-          {filteredProducts.map((product) => (
-            <div className="col-6 col-md-4 col-xl-3" key={product.id}>
-              <article className="card h-100 shadow-sm">
-                {product.image ? (
-                  <img
-                    src={product.image}
-                    className="card-img-top"
-                    alt={product.name}
-                    style={{ height: 200, objectFit: "cover" }}
-                  />
-                ) : (
-                  <div
-                    className="d-flex align-items-center justify-content-center bg-light text-secondary"
-                    style={{ height: 200 }}
-                    aria-label="Chưa có ảnh sản phẩm"
-                  >
-                    <i className="bi bi-image fs-1" aria-hidden="true" />
+          {filteredProducts.map((product) => {
+            const display = getProductDisplay(product, language);
+            return (
+              <div className="col-6 col-md-4 col-xl-3" key={product.id}>
+                <article className="card h-100 shadow-sm">
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      className="card-img-top"
+                      alt={display.name}
+                      style={{ height: 200, objectFit: "cover" }}
+                    />
+                  ) : (
+                    <div
+                      className="d-flex align-items-center justify-content-center bg-light text-secondary"
+                      style={{ height: 200 }}
+                      aria-label="Chưa có ảnh sản phẩm"
+                    >
+                      <i className="bi bi-image fs-1" aria-hidden="true" />
+                    </div>
+                  )}
+                  <div className="card-body d-flex flex-column">
+                    <span className="small text-secondary">
+                      {getCategoryLabel(product.category, categories, language)}
+                    </span>
+                    <h2 className="h6 mt-2">{display.name}</h2>
+                    <p className="fw-bold text-danger mb-3">
+                      {display.price}
+                    </p>
+                    <Link
+                      className="btn btn-outline-danger mt-auto"
+                      to={`/products/${product.id}`}
+                    >
+                      Xem chi tiết
+                    </Link>
                   </div>
-                )}
-                <div className="card-body d-flex flex-column">
-                  <span className="small text-secondary">{product.category}</span>
-                  <h2 className="h6 mt-2">{product.name}</h2>
-                  <p className="fw-bold text-danger mb-3">
-                    {formatPrice(product.price)}
-                  </p>
-                  <Link
-                    className="btn btn-outline-danger mt-auto"
-                    to={`/products/${product.id}`}
-                  >
-                    Xem chi tiết
-                  </Link>
-                </div>
-              </article>
-            </div>
-          ))}
+                </article>
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

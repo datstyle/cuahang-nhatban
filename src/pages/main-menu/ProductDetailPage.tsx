@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import { isAxiosError } from "axios";
+import type { StorefrontContext } from "../../layouts/MainLayouts";
 import type { Product } from "../../types";
 import { ProductService } from "../../services/productService";
-
-const formatPrice = (price: number) =>
-  `${new Intl.NumberFormat("vi-VN").format(price)}₫`;
+import { getCategoryLabel, getProductDisplay } from "../../utils/localize";
 
 export default function ProductDetailPage() {
+  const { language, categories } = useOutletContext<StorefrontContext>();
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,6 +51,8 @@ export default function ProductDetailPage() {
     };
   }, [id, reloadKey]);
 
+  const display = product && getProductDisplay(product, language);
+
   return (
     <section className="container py-4">
       <Link to="/products" className="btn btn-link px-0 mb-3">
@@ -79,13 +81,13 @@ export default function ProductDetailPage() {
         </div>
       )}
 
-      {!isLoading && !error && product && (
+      {!isLoading && !error && product && display && (
         <article className="row g-4 align-items-start">
           <div className="col-12 col-md-6">
             {product.image ? (
               <img
                 src={product.image}
-                alt={product.name}
+                alt={display.name}
                 className="img-fluid rounded border w-100"
                 style={{ maxHeight: 480, objectFit: "contain" }}
               />
@@ -96,10 +98,12 @@ export default function ProductDetailPage() {
             )}
           </div>
           <div className="col-12 col-md-6">
-            <span className="text-secondary">{product.category}</span>
-            <h1 className="h3 mt-2">{product.name}</h1>
-            <p className="fs-4 fw-bold text-danger">{formatPrice(product.price)}</p>
-            <p>{product.description || "Chưa có mô tả cho sản phẩm này."}</p>
+            <span className="text-secondary">
+              {getCategoryLabel(product.category, categories, language)}
+            </span>
+            <h1 className="h3 mt-2">{display.name}</h1>
+            <p className="fs-4 fw-bold text-danger">{display.price}</p>
+            <p>{display.description || "Chưa có mô tả cho sản phẩm này."}</p>
             <p className="text-secondary">
               Tình trạng: {product.stock > 0 ? `Còn ${product.stock} sản phẩm` : "Hết hàng"}
             </p>

@@ -1,31 +1,13 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import type { Category } from "../../types";
-import { categoryService } from "../../services/categoryService";
+import { useEffect } from "react";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import type { StorefrontContext } from "../../layouts/MainLayouts";
+import { getCategoryName } from "../../utils/localize";
 import ProductListPage from "./ProductListPage";
 
 export default function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [categoryError, setCategoryError] = useState("");
-
-  useEffect(() => {
-    let isActive = true;
-
-    categoryService
-      .getAll()
-      .then((data) => {
-        if (isActive) setCategories(Array.isArray(data) ? data : []);
-      })
-      .catch(() => {
-        if (isActive) setCategoryError("Không tải được danh mục.");
-      });
-
-    return () => {
-      isActive = false;
-    };
-  }, []);
+  const { language, categories, categoryError } = useOutletContext<StorefrontContext>();
 
   useEffect(() => {
     if (location.hash === "#products") {
@@ -61,7 +43,7 @@ export default function HomePage() {
                   })
                 }
               >
-                {category.name}
+                {getCategoryName(category, language)}
               </button>
             ))}
           </div>

@@ -7,10 +7,15 @@ import TopBarButton from "./TopBarButton";
 import "../../css/Topbar.css";
 import ChatMenu from "../Chat/ChatMenu";
 import AccountMenu from "./AccountMenu";
+import type { Lang } from "../../types";
 
-export default function TopBar() {
+interface TopBarProps {
+  language: Lang;
+  setLanguage: (language: Lang) => void;
+}
+
+export default function TopBar({ language, setLanguage }: TopBarProps) {
   const navigate = useNavigate();
-  const [language, setLanguage] = useState<"vi" | "en" | "ja">("vi");
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const languageLabels = {

@@ -10,6 +10,10 @@ export interface Product {
     discountedPrice?: number;
     nameEn?: string;
     nameJa?: string;
+    descriptionEn?: string;
+    descriptionJa?: string;
+    priceUsd?: number;
+    priceJpy?: number;
 }
 
 export interface Category {
