@@ -69,6 +69,8 @@ export default function BuyPage() {
             type="button"
             className={activeTab === tab.id ? "active" : ""}
             aria-pressed={activeTab === tab.id}
+            data-sound-hover="true"
+            data-sound-click="true"
             onClick={() => setActiveTab(tab.id)}
           >
             {tab.label}
@@ -152,10 +154,10 @@ export default function BuyPage() {
         </div>
 
         <div className="buy-filter-actions">
-          <button type="button" className="buy-clear-button" onClick={clearFilters}>
+          <button type="button" className="buy-clear-button" data-sound-click="true" onClick={clearFilters}>
             Xóa các tùy chọn
           </button>
-          <button type="submit" className="buy-search-button">
+          <button type="submit" className="buy-search-button" data-sound-click="true">
             Tìm kiếm
           </button>
         </div>

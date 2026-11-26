@@ -36,7 +36,6 @@ export default function LoginForm() {
     }
 
     login(account, remember);
-    showToast("Đăng nhập thành công!");
   };
 
   const handleGoogleLogin = async (credential?: string) => {
@@ -67,9 +66,9 @@ export default function LoginForm() {
       const data = await response.json();
 
       login(data.account, remember);
-      showToast("Đăng nhập Google thành công!");
+      showToast("Đăng nhập Google thành công");
     } catch {
-      setError("Không thể đăng nhập Google. Bạn thử lại nhé!");
+      setError("Không thể đăng nhập Google. Chúng tôi sẽ làm xong chức này nhanh nhất có thể");
     } finally {
       setLoading(false);
     }
@@ -124,6 +123,8 @@ export default function LoginForm() {
       <button
         type="submit"
         className="auth-submit"
+        data-sound-hover="true"
+        data-sound-click="true"
         disabled={!canSubmit || loading}
       >
         <i className="bi bi-box-arrow-in-right"></i>

@@ -54,7 +54,7 @@ export default function ChatWindow({
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
         />
-        <button type="submit" disabled={!draft.trim()} title="Gửi">
+        <button type="submit" disabled={!draft.trim()} title="Gửi" data-sound-hover="true" data-sound-click="true">
           <i className="bi bi-send-fill" />
         </button>
       </form>

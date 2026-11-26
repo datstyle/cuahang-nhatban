@@ -69,7 +69,7 @@ export default function ChatMenu() {
             <h5>
               Chat {totalUnread > 0 && <small>({totalUnread})</small>}
             </h5>
-            <button type="button" title="Đóng" onClick={closeMenu}>
+            <button type="button" title="Đóng" data-sound-hover="true" data-sound-click="true" onClick={closeMenu}>
               <i className="bi bi-x-lg" />
             </button>
           </div>

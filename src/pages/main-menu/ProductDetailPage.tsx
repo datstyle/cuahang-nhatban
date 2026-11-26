@@ -55,7 +55,7 @@ export default function ProductDetailPage() {
 
   return (
     <section className="container py-4">
-      <Link to="/products" className="btn btn-link px-0 mb-3">
+      <Link to="/" className="btn btn-link px-0 mb-3">
         ← Quay lại danh sách
       </Link>
 

@@ -29,6 +29,8 @@ export default function Sidebar() {
           key={label}
           to={to}
           end={to === "/"}
+          data-sound-hover="true"
+          data-sound-click="true"
           className={({ isActive }) => `side-item${isActive ? " active" : ""}`}
         >
           <i className={`bi ${icon}`} aria-hidden="true" />

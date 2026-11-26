@@ -25,6 +25,14 @@ export interface Category {
 
 export type Lang = "vi" | "en" | "ja";
 
+export type ProductSoundTheme = "forza-horizon" | "gta-v" | "red-dead-redemption-2";
+
+export interface ProductSoundSettings {
+    enabled: boolean;
+    theme: ProductSoundTheme;
+    volume: number;
+}
+
 export interface CartItem {
     product: Product;
     quantity: number;

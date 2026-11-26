@@ -1,0 +1,23 @@
+.sound-hover-card {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sound-hover-card:hover {
+    z-index: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 16%) !important;
+  }
+}
+
+.sound-hover-card:focus-within {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sound-hover-card {
+    transition: none;
+  }
+}

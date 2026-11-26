@@ -15,6 +15,8 @@ export default function TopBarButton({
     <button
       type="button"
       className={`top-item ${className}`}
+      data-sound-hover="true"
+      data-sound-click="true"
       onClick={onClick}
     >
       <i className={`bi ${icon}`}></i>

@@ -104,7 +104,7 @@ export default function RegisterForm() {
 
       {error && <div className="auth-error">{error}</div>}
 
-      <button type="submit" className="auth-submit">Đăng ký</button>
+      <button type="submit" className="auth-submit" data-sound-hover="true" data-sound-click="true">Đăng ký</button>
     </form>
   );
 }

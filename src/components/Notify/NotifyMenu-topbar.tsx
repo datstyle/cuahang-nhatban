@@ -43,11 +43,13 @@ export default function NotifyMenu() {
               <button
                 type="button"
                 title="Đánh dấu đã đọc"
+                data-sound-hover="true"
+                data-sound-click="true"
                 onClick={() => setShowRead(true)}
               >
                 <i className={`bi ${showRead ? "bi-check2-all" : "bi-eye"}`} />
               </button>
-              <button type="button" title="Đóng" onClick={close}>
+              <button type="button" title="Đóng" data-sound-hover="true" data-sound-click="true" onClick={close}>
                 <i className="bi bi-x-lg" />
               </button>
             </div>
@@ -59,6 +61,8 @@ export default function NotifyMenu() {
                 key={t.key}
                 type="button"
                 className={tab === t.key ? "on" : ""}
+                data-sound-hover="true"
+                data-sound-click="true"
                 onClick={() => setTab(t.key)}
               >
                 {t.label}
@@ -73,7 +77,7 @@ export default function NotifyMenu() {
               </div>
             ) : (
               shown.map((n) => (
-                <div key={n.id} className="notify-item">
+                <div key={n.id} className="notify-item sound-hover-card" data-sound-hover="true">
                   {n.text}
                 </div>
               ))

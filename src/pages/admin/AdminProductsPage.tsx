@@ -73,6 +73,8 @@ export default function AdminProductsPage() {
             type="button"
             role="tab"
             aria-selected={activeFilter === tab.id}
+            data-sound-hover="true"
+            data-sound-click="true"
             className={activeFilter === tab.id ? "active" : ""}
             onClick={() => setActiveFilter(tab.id)}
           >

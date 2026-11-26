@@ -29,7 +29,7 @@ export default function TopBar({ language, setLanguage }: TopBarProps) {
   return (
     <header className="topbar">
       <SearchBox />
-      <NavLink to="/cart" className="top-item">
+      <NavLink to="/cart" className="top-item" data-sound-hover="true" data-sound-click="true">
         <i className="bi bi-cart" />
         <span>Giỏ hàng</span>
       </NavLink>
@@ -39,6 +39,8 @@ export default function TopBar({ language, setLanguage }: TopBarProps) {
         <button
           type="button"
           className={`top-item${isLanguageMenuOpen ? " active" : ""}`}
+          data-sound-hover="true"
+          data-sound-click="true"
           aria-expanded={isLanguageMenuOpen}
           onClick={() => setIsLanguageMenuOpen((isOpen) => !isOpen)}
         >
@@ -52,6 +54,8 @@ export default function TopBar({ language, setLanguage }: TopBarProps) {
             <button
               type="button"
               className={language === "vi" ? "selected" : ""}
+              data-sound-hover="true"
+              data-sound-click="true"
               onClick={() => {
                 setLanguage("vi");
                 setIsLanguageMenuOpen(false);
@@ -62,6 +66,8 @@ export default function TopBar({ language, setLanguage }: TopBarProps) {
             <button
               type="button"
               className={language === "en" ? "selected" : ""}
+              data-sound-hover="true"
+              data-sound-click="true"
               onClick={() => {
                 setLanguage("en");
                 setIsLanguageMenuOpen(false);
@@ -72,6 +78,8 @@ export default function TopBar({ language, setLanguage }: TopBarProps) {
             <button
               type="button"
               className={language === "ja" ? "selected" : ""}
+              data-sound-hover="true"
+              data-sound-click="true"
               onClick={() => {
                 setLanguage("ja");
                 setIsLanguageMenuOpen(false);

@@ -1,3 +1,5 @@
+import type { ProductSoundSettings } from "../types";
+
 export interface BankAccount {
   id: string;
   bankName: string;
@@ -21,6 +23,7 @@ export interface UserSettings {
     promotions: boolean;
     accountActivity: boolean;
   };
+  productSounds: ProductSoundSettings;
   personalizedRecommendations: boolean;
   deletionRequestedAt: string | null;
 }
@@ -33,6 +36,11 @@ const createDefaultSettings = (): UserSettings => ({
     promotions: false,
     accountActivity: true,
   },
+  productSounds: {
+    enabled: true,
+    theme: "forza-horizon",
+    volume: 20,
+  },
   personalizedRecommendations: true,
   deletionRequestedAt: null,
 });
@@ -44,9 +52,23 @@ export const settingsService = {
   load: (email: string): UserSettings => {
     try {
       const rawSettings = localStorage.getItem(getStorageKey(email));
-      return rawSettings
-        ? { ...createDefaultSettings(), ...JSON.parse(rawSettings) }
-        : createDefaultSettings();
+      if (!rawSettings) return createDefaultSettings();
+
+      const defaults = createDefaultSettings();
+      const savedSettings = JSON.parse(rawSettings) as Partial<UserSettings>;
+
+      return {
+        ...defaults,
+        ...savedSettings,
+        notifications: {
+          ...defaults.notifications,
+          ...savedSettings.notifications,
+        },
+        productSounds: {
+          ...defaults.productSounds,
+          ...savedSettings.productSounds,
+        },
+      };
     } catch {
       return createDefaultSettings();
     }

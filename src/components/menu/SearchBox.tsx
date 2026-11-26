@@ -14,14 +14,14 @@ export default function SearchBox() {
   };
 
   return (
-    <form className="topbar-search" onSubmit={handleSubmit}>
+    <form className="topbar-search" data-sound-hover="true" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Đồ cosplay genshin...."
         value={keyword}
         onChange={(event) => setKeyword(event.target.value)}
       />
-      <button type="submit">Tìm kiếm</button>
+      <button type="submit" data-sound-click="true">Tìm kiếm</button>
     </form>
   );
 }

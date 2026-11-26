@@ -38,7 +38,9 @@ export default function ChatList({
             <button
               key={conversation.id}
               type="button"
-              className={`chat-conv${conversation.id === activeId ? " on" : ""}`}
+              className={`chat-conv sound-hover-card${conversation.id === activeId ? " on" : ""}`}
+              data-sound-hover="true"
+              data-sound-click="true"
               onClick={() => onSelect(conversation.id)}
             >
               <div className="chat-avatar">{conversation.name[0]}</div>

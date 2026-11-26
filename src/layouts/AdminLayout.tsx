@@ -55,6 +55,8 @@ export default function AdminLayout() {
                 key={item.to}
                 to={item.to}
                 end={item.to === "/admin"}
+                data-sound-hover="true"
+                data-sound-click="true"
                 className={({ isActive }) =>
                   `admin-nav-link${isActive ? " active" : ""}`
                 }

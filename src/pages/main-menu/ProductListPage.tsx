@@ -4,9 +4,13 @@ import type { StorefrontContext } from "../../layouts/MainLayouts";
 import type { Product } from "../../types";
 import { ProductService } from "../../services/productService";
 import { getCategoryLabel, getProductDisplay } from "../../utils/localize";
+import "../../css/ProductList.css";
 
 export default function ProductListPage() {
-  const { language, categories } = useOutletContext<StorefrontContext>();
+  const {
+    language,
+    categories,
+  } = useOutletContext<StorefrontContext>();
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("search")?.trim().toLowerCase() ?? "";
   const selectedCategoryId = searchParams.get("category")?.trim().toLowerCase() ?? "";
@@ -81,39 +85,41 @@ export default function ProductListPage() {
       )}
 
       {!isLoading && !error && filteredProducts.length > 0 && (
-        <div className="row g-4">
+        <div className="row g-3 product-grid">
           {filteredProducts.map((product) => {
             const display = getProductDisplay(product, language);
             return (
-              <div className="col-6 col-md-4 col-xl-3" key={product.id}>
-                <article className="card h-100 shadow-sm">
+              <div className="col-6 col-sm-4 col-lg-3 col-xl-2" key={product.id}>
+                <article
+                  className="card h-100 shadow-sm product-card sound-hover-card"
+                  data-sound-hover="true"
+                >
                   {product.image ? (
                     <img
                       src={product.image}
-                      className="card-img-top"
+                      className="card-img-top product-card-image"
                       alt={display.name}
-                      style={{ height: 200, objectFit: "cover" }}
                     />
                   ) : (
                     <div
-                      className="d-flex align-items-center justify-content-center bg-light text-secondary"
-                      style={{ height: 200 }}
+                      className="product-card-image-placeholder d-flex align-items-center justify-content-center bg-light text-secondary"
                       aria-label="Chưa có ảnh sản phẩm"
                     >
                       <i className="bi bi-image fs-1" aria-hidden="true" />
                     </div>
                   )}
                   <div className="card-body d-flex flex-column">
-                    <span className="small text-secondary">
+                    <span className="small text-secondary product-card-category">
                       {getCategoryLabel(product.category, categories, language)}
                     </span>
-                    <h2 className="h6 mt-2">{display.name}</h2>
-                    <p className="fw-bold text-danger mb-3">
+                    <h2 className="h6 mt-2 product-card-title">{display.name}</h2>
+                    <p className="fw-bold text-danger product-card-price">
                       {display.price}
                     </p>
                     <Link
-                      className="btn btn-outline-danger mt-auto"
+                      className="btn btn-outline-danger mt-auto product-card-link"
                       to={`/products/${product.id}`}
+                      data-sound-click="true"
                     >
                       Xem chi tiết
                     </Link>

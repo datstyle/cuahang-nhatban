@@ -62,6 +62,8 @@ export default function AdminOrdersPage() {
               type="button"
               role="tab"
               aria-selected={activeFilter === filter}
+              data-sound-hover="true"
+              data-sound-click="true"
               className={activeFilter === filter ? "active" : ""}
               onClick={() => setActiveFilter(filter)}
             >

@@ -85,6 +85,8 @@ export default function AccountMenu() {
       <button
         type="button"
         className={`top-item account-trigger${user?.role === "admin" ? " admin" : ""}`}
+        data-sound-hover="true"
+        data-sound-click="true"
         onClick={() => (user ? setIsOpen((open) => !open) : navigate("/login"))}
       >
         {user?.avatar ? (
@@ -104,6 +106,8 @@ export default function AccountMenu() {
               <button
                 type="button"
                 className="account-item"
+                data-sound-hover="true"
+                data-sound-click="true"
                 onClick={() => handleLogin(DEMO_ADMIN)}
               >
                 <i className="bi bi-person-gear" />
@@ -112,6 +116,8 @@ export default function AccountMenu() {
               <button
                 type="button"
                 className="account-item"
+                data-sound-hover="true"
+                data-sound-click="true"
                 onClick={() => handleLogin(DEMO_USER)}
               >
                 <i className="bi bi-person" />
@@ -127,6 +133,8 @@ export default function AccountMenu() {
                       key={item.to}
                       type="button"
                       className={`account-item${item.red ? " red" : ""}`}
+                      data-sound-hover="true"
+                      data-sound-click="true"
                       onClick={() => handleNavigate(item.to)}
                     >
                       <i className={`bi ${item.icon}`} />
@@ -140,6 +148,8 @@ export default function AccountMenu() {
               <button
                 type="button"
                 className="account-item red"
+                data-sound-hover="true"
+                data-sound-click="true"
                 onClick={handleLogout}
               >
                 <i className="bi bi-box-arrow-right" />
